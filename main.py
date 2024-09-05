@@ -32,10 +32,10 @@ app = FastAPI()
 security = HTTPBasic()
 
 # Mount static files
-app.mount("/static", StaticFiles(directory="app/static"), name="static")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Setup templates
-templates = Jinja2Templates(directory="app/templates")
+templates = Jinja2Templates(directory="templates")
 
 # # # Setup MongoDB
 # # client = AsyncIOMotorClient(MONGODB_URI)
@@ -83,7 +83,7 @@ async def join_us_submit(
     # Handle file uploads
     audition_clip_path = None
     glimpse_of_work_path = None
-    upload_dir = "app/static/uploads"
+    upload_dir = "static/uploads"
 
     os.makedirs(upload_dir, exist_ok=True)
 

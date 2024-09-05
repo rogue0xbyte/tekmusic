@@ -47,7 +47,7 @@ section {
     display: flex;
     overflow-x: scroll; /* Enables horizontal scrolling */
     scroll-snap-type: x mandatory; /* Ensures snapping to each video-container */
-    gap: 16px; /* Optional: Adds space between items */
+    gap: 40px; /* Optional: Adds space between items */
     padding: 20px;
     scrollbar-width: none; /* Hides scrollbar in Firefox */
     max-height: 80vh!important;

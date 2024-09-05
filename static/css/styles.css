@@ -39,6 +39,7 @@ a:hover {
     height: 30px;
     cursor: pointer;
     z-index: 1001;
+        margin-right: -70vw;
 }
 
 .menu-toggle span {

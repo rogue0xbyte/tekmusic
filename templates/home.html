@@ -90,9 +90,25 @@
 <body>
 
 <section style="max-height: 90vh!important;">
-    <video class="hero-video" autoplay muted loop style="max-width:95%!important;filter: brightness(0.5);">
-        <source src="/static/vid/thillanaShow.mp4" type="video/mp4">
+   <video class="hero-video" id="hero-video" autoplay muted loop style="max-width:95%!important;filter: brightness(0.5);">
     </video>
+
+    <script>
+        async function fetchVideo() {
+            const response = await fetch('https://cdn.intellx.in/TM-WBST/thillanaShow.mp4', {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Basic ' + btoa('snidm:!ntellX-CDN-W3BS!T3')
+                }
+            });
+            const blob = await response.blob();
+            const video = document.getElementById('hero-video');
+            video.src = URL.createObjectURL(blob);
+        }
+
+        fetchVideo();
+    </script>
+
     <div class="hero-image">
         <h1>Tek Music</h1>
         <h2>The Big Band Theory</h2>

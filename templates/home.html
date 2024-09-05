@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Arial Black', Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section Styling */
+        .hero-image {
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Text Styling */
+        h1 {
+            font-size: 10vw;
+            color: #ab90dd;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 5vw;
+            color: #8fdac6;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        /* Button Styling */
+        .btn {
+            padding: 15px 30px;
+            background-color: #ab90dd;
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.5vw;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background-color: #8fdac6;
+            color: #fff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 15vw;
+            }
+
+            h2 {
+                font-size: 8vw;
+            }
+
+            .btn {
+                font-size: 4vw;
+                padding: 10px 20px;
+            }
+
+            .hero-image {
+                height: 80vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<section style="max-height: 90vh!important;">
+    <video class="hero-video" autoplay muted loop style="max-width:95%!important;filter: brightness(0.5);">
+        <source src="/static/vid/thillanaShow.mp4" type="video/mp4">
+    </video>
+    <div class="hero-image">
+        <h1>Tek Music</h1>
+        <h2>The Big Band Theory</h2>
+        <a href="/shows" class="btn">Watch our Latest Show</a>
+    </div>
+</section>
+
+<section class="latest-videos">
+    <h2>Latest Videos</h2>
+    <div class="video-grid" style="align-content: center;justify-content: center;">
+        <div class="video">
+            <iframe height="315" src="https://www.youtube.com/embed/6a4Uzbi9BRg?si=oAWcr6cC7oNv7Xpu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video">
+            <iframe height="315" src="https://www.youtube.com/embed/ZuTv0ERPNJM?si=1s0HxzAuT8SLdfX4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video">
+            <iframe height="315" src="https://www.instagram.com/p/CxN3UnpR50k/embed" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
+{% endblock %}

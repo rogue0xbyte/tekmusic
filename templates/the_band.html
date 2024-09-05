@@ -1,0 +1,312 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+/* Adjusting the band member card for non-mobile views */
+.band-member-card {
+  color: white;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column; /* Ensure each card has vertical content flow */
+  width: calc(33.33% - 40px); /* Three cards per row */
+  box-sizing: border-box;
+  justify-content: center;
+  gap: 20px;
+}
+
+.band-member-card-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows cards to wrap in case of overflow */
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%; /* Ensure the container takes full width */
+}
+
+/* Media Queries for mobile views */
+@media (max-width: 768px) {
+  .band-member-card {
+    width: 100%; /* Stack cards on top of each other in mobile view */
+  }
+}
+
+
+.member-photo {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.member-photo iframe {
+  width: 100%;
+  border-radius: 50%;
+}
+
+
+.band-member-card {
+  padding-left: 20px;
+  display: flex;
+  justify-content: center;!important;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.did-you-know {
+    margin-top: 10px;
+    margin: 0 auto;
+    position: relative;
+    padding: 20px;
+    background-color: #0B0B0B;
+    border-radius: 8px;
+    overflow: hidden;
+    /* Ensure the text is on top of the doodle */
+    z-index: 1;
+}
+
+.did-you-know::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background: transparent;
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.2), /* First layer of sketched border */
+                0 0 0 6px rgba(0, 0, 0, 0.2), /* Second layer for more sketched effect */
+                0 0 0 8px rgba(0, 0, 0, 0.2); /* Third layer for deeper sketched effect */
+    z-index: -1;
+    pointer-events: none; /* Prevents the doodle from interfering with user interactions */
+}
+.did-you-know ul {
+  list-style: none;
+  padding: 0;
+}
+
+.group {
+    margin-bottom: 20px;
+  }
+
+  .group-header {
+    cursor: pointer;
+    color: white;
+    max-width: 85vw;
+    margin: 0 auto;
+    text-align: center;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .group-content {
+    display: none;
+    margin-top: 10px;
+  }
+
+    .group-content > * {
+    margin: 0 auto;
+}
+
+
+  .group-content.show {
+    display: block;
+  }
+
+  .group-contact {
+    cursor: pointer;
+    color: white;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80vw;
+    text-align: center;
+    margin: 0 auto; 
+  }
+
+.ndfHFb-c4YZDc-Wrql6b, .ndfHFb-c4YZDc-Bz112c {
+  display: none!important;
+}
+
+
+/* Media Queries */
+@media(max-width: 768px) {
+
+  .band-member-card{
+    display: block;
+  }
+}
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const headers = document.querySelectorAll('.group-header');
+    headers.forEach(header => {
+      header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+        content.classList.toggle('show');
+      });
+    });
+  });
+</script>
+
+<br/><br/>
+
+<h1 style="text-align: center; font-size: 3em; color: #fff; text-shadow: 3px 3px 15px rgba(255, 255, 255, 0.5); margin-bottom: 40px;">Meet The Band.</h1>
+<p style="text-align: center;color: white;">The talent behind the art.</p>
+<br/>
+
+<div id="groups-container"></div>
+
+
+<div class="canvas-wrapper w-embed">
+<style>
+  #noiseCanvas {
+    opacity: 0!important;
+}
+body {
+    align-content: start!important;
+}
+.lil-gui {
+    display: none!important;
+}
+.main {
+    color: white;
+  width: 100vw!important;
+}
+#c{
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    position: fixed;
+    z-index: -999;
+    top: 0;
+    margin: 0 0 0 0;
+}
+</style>
+<canvas data-blue="0.88" data-brightness=".8" data-bw=".0" data-gradient="wrapper" data-green="0.33" data-hue="180" data-mouse="-1" data-multx="2" data-multy="2" data-noise="1.5" data-red="0.00" data-scale="1" data-test="true" data-time=".2" id="c"></canvas></div><script src="https://cdn.jsdelivr.net/gh/vallafederico/glsl-gradient-webflow@master/lib/gradient.02.js"></script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    // Process and generate the band data
+    const data = {{band | safe}};
+    
+    function convertDriveLink(originalUrl) {
+      const url = new URL(originalUrl);
+      const fileId = url.searchParams.get('id');
+      return fileId ? `https://drive.google.com/file/d/${fileId}` : 'Invalid Google Drive link';
+    }
+
+    const groups = {};
+    data.forEach(item => {
+      const name = item['Name/Pseudonym'];
+      const role = item['What do you do?'];
+      const description = item['One-Liner about yourself'];
+      const funFact = item['Fun Facts about you (Keep it between 1-3 one-liners)'];
+      const photoUrl = item['A fun photo of you for the website'];
+      const group = item['Wing'];
+
+      if (!groups[group]) groups[group] = [];
+      groups[group].push({ name, role, description, funFact, photoUrl });
+    });
+
+    const container = document.getElementById('groups-container');
+    for (const [groupName, members] of Object.entries(groups)) {
+      const groupDiv = document.createElement('div');
+      groupDiv.className = 'group';
+
+      const groupHeader = document.createElement('div');
+      groupHeader.className = 'group-header';
+      groupHeader.innerHTML = `<h2>${groupName}</h2> <p>Click to View</p>`;
+      groupHeader.addEventListener('click', () => {
+        const content = groupDiv.querySelector('.group-content');
+        content.style.display = content.style.display === 'none' ? 'block' : 'none';
+      });
+
+      const groupContent = document.createElement('div');
+      groupContent.className = 'group-content';
+      groupContent.style.display = 'none'; // Start with group collapsed
+
+      members.forEach(member => {
+
+        const newline = document.createElement('br');
+        groupContent.appendChild(newline);
+        groupContent.appendChild(newline);
+
+
+        const card = document.createElement('div');
+        card.className = 'band-member-card';
+        card.id = member.name.toLowerCase().replace(" ","_"); // Set the card's ID to the member's name for linking
+
+        const photo = document.createElement('div');
+        photo.className = 'member-photo';
+        photo.innerHTML = `<iframe src="${convertDriveLink(member.photoUrl)}/preview" allow="autoplay" alt="${member.name} Photo"></iframe>`;
+        card.appendChild(photo);
+
+        const info = document.createElement('div');
+        info.className = 'member-info';
+        info.innerHTML = `
+          <div>
+              <h3>${member.name}</h3>
+              <p>${member.role}</p>
+              <p>${member.description}</p>
+          </div>
+          <div class="did-you-know">
+              <h4>Did you know?</h4>
+              <ul><li>${member.funFact}</li></ul>
+          </div>
+        `;
+        card.appendChild(info);
+        groupContent.appendChild(card);
+      });
+
+      groupDiv.appendChild(groupHeader);
+      groupDiv.appendChild(groupContent);
+      container.appendChild(groupDiv);
+    }
+
+    expandAndScrollToMember();
+
+  });
+</script>
+
+<script>
+  // Function to detect the group based on the member name (hash) and expand it
+    function expandAndScrollToMember() {
+      const hash = window.location.hash.substring(1); // Get the hash from the URL, e.g. #saran
+      console.log("HASH IS",hash);
+      if (hash) {
+        const memberId = hash; // Remove the # to get the actual ID
+        const memberCard = document.getElementById(memberId); // Find the card with the member's ID
+        const groupElement = memberCard.closest('.group'); // Assuming .group is the parent container for groups
+                const groupContent = groupElement.querySelector('.group-content');
+
+        console.log("GRPCNT IS",groupContent);
+
+        if (memberCard) {
+          
+          if (groupElement) {
+            // Expand the group if it's collapsed
+            groupContent.style.display = 'block';
+            groupContent.classList.toggle('show'); // Show the group's content
+
+            // Scroll to the member card after expanding the group
+            memberCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      }
+    }
+
+
+    // Also listen for hash changes
+    window.addEventListener('hashchange', expandAndScrollToMember);
+</script>
+
+{% endblock %}

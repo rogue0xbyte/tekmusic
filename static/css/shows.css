@@ -1,0 +1,129 @@
+body {
+    background-color: black;
+}
+
+.background-gif {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGNrN3lsMmJ3c3k5MGJuenFuczJuem95MzJud2o3enljODJva211eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kIMtLsFNxGXtYNxmq4/giphy.webp') center/cover no-repeat;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3em;
+    color: #fff;
+    text-shadow: 3px 3px 15px rgba(255, 255, 255, 0.5);
+    margin-bottom: 40px;
+}
+
+button {
+    position: absolute;
+    top: 50%;
+    background-color: #fff;
+    border: none;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 100;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-left {
+    left: 10px;
+}
+
+.scroll-right {
+    right: 10px;
+}
+
+
+section {
+    display: flex;
+    overflow-x: scroll; /* Enables horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Ensures snapping to each video-container */
+    gap: 16px; /* Optional: Adds space between items */
+    padding: 20px;
+    scrollbar-width: none; /* Hides scrollbar in Firefox */
+    max-height: 80vh!important;
+}
+
+section::-webkit-scrollbar {
+    display: none;
+}
+
+.video-container {
+    margin-bottom: 30px;
+    width: 80%;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+    border-radius: 15px;
+    min-height: 45vh;
+    overflow-y: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-container {
+    flex: 0 0 80%; /* Adjust based on how many videos you want visible at a time */
+    scroll-snap-align: center; /* Snap to the center of the viewport */
+}
+
+/* YouTube and Instagram iframe styling */
+.youtube-iframe, .instagram-iframe {
+    width: 100%;
+    height: 200px; /* Adjust according to the desired size */
+    border: none;
+    border-radius: 8px;
+}
+
+.video-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.video-container h2 {
+    font-size: 1.5em;
+    margin: 0;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    text-align: center;
+    color: #fff;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+}
+
+.video-container iframe {
+    width: 100%;
+    border: none;
+}
+
+.youtube-iframe {
+    min-height: 600px!important; /* Standard height for YouTube videos */
+}
+
+.instagram-iframe {
+    min-height: 600px!important; /* Adjust height to fit Instagram posts */
+    border: none; /* Remove border */
+}
+
+#noiseCanvas {
+    opacity: 0.1!important;
+}
+
+@media (max-width: 1366px) {
+    .video-container {
+        min-height: 60vh;
+    }
+    .youtube-iframe {
+        min-height: 1250px!important; /* Adjusted height for smaller screens */
+    }
+
+    .instagram-iframe {
+        min-height: 50vh!important; /* Adjusted height for smaller screens */
+    }
+}

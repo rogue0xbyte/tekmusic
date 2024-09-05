@@ -1,0 +1,105 @@
+/* Body dark mode */
+body {
+    background-color: #1a1a2e;
+    color: #f1f1f1;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Responsive grid layout */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* auto-fit helps with centering */
+    justify-content: center; /* Center the cards horizontally */
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px; /* Set a max width to prevent cards from stretching too far */
+    margin: 0 auto; /* Center the entire card-container */
+}
+
+/* Glassmorphism styling for the cards */
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-poster {
+    width: 100%;
+    max-height: 150px; /* Adjust the height of the poster as needed */
+    object-fit: cover; /* Ensure the image covers the area without stretching */
+    border-radius: 12px;
+    margin-bottom: 15px;
+    background-color: #333; /* Fallback in case the image fails to load */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+}
+
+/* Flex layout for header */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Styling the company logo */
+.company-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+/* Status label styling */
+.status {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    border-radius: 12px;
+}
+
+.eligible {
+    background-color: rgba(40, 167, 69, 0.8); /* Glassy green */
+    color: #fff;
+}
+
+.opted-out {
+    background-color: rgba(69, 53, 220, 0.8); /* Glassy blue */
+    color: #fff;
+}
+
+/* Text styling for card content */
+.card-body h3 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.card-body p {
+    margin: 3px 0;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.location, .type, .position, .salary {
+    font-size: 1rem;
+}
+
+.salary {
+    font-weight: bold;
+    color: #00d4ff;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+#noiseCanvas {
+    opacity: 0!important;
+}

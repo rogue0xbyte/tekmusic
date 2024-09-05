@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="/static/css/events.css">
+<div class="background-gif"></div>
+<link href="https://assets-global.website-files.com/62f520b6e7a1c5a89aea39de/css/webgl-glsl-gradient.webflow.baa6b15f1.css" rel="stylesheet" type="text/css"/>
+
+<h1 style="text-align: center; font-size: 3em; color: #fff; text-shadow: 3px 3px 15px rgba(255, 255, 255, 0.5); margin-bottom: 40px;">Our Events</h1>
+<p style="text-align: center;color: white;">Experience the energy and passion of our shows, where every performance brings you closer to the heart of our music and the soul of the band.</p>
+
+<div class="card-container">
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1487954277007-8c2d6710c312?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-poster"/>
+        <div class="card-header">
+            <span class="status eligible">Upcoming</span>
+        </div>
+        <div class="card-body">
+            <h3>Innaugrals, 2024</h3>
+            <p class="location">Location T.B.A</p>
+            <p class="type">Time T.B.A</p>
+            <p class="position">Western Music</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://img.freepik.com/premium-photo/dj-dj-booth-live-music-entertainment-nightclub_923558-2534.jpg" class="card-poster" />
+        <div class="card-header">
+            <span class="status opted-out">Completed</span>
+        </div>
+        <div class="card-body">
+            <h3>Carnatic Show, 2024</h3>
+            <p class="location">D Block Conference Hall</p>
+            <p class="type">31st August, 2024 @ 6:00pm</p>
+            <p class="position">Carnatic Music</p>
+        </div>
+    </div>
+
+</div>
+
+<div class="canvas-wrapper w-embed">
+<style>
+body {
+    align-content: start!important;
+}
+.lil-gui {
+    display: none!important;
+}
+.main {
+    color: white;
+  width: 100vw!important;
+}
+#c{
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    position: fixed;
+    z-index: -999;
+    top: 0;
+    margin: 0 0 0 0;
+}
+</style>
+<canvas data-blue="0.88" data-brightness=".8" data-bw=".0" data-gradient="wrapper" data-green="0.33" data-hue="180" data-mouse="-1" data-multx="2" data-multy="2" data-noise="1.5" data-red="0.00" data-scale="1" data-test="true" data-time=".2" id="c"></canvas></div><script src="https://cdn.jsdelivr.net/gh/vallafederico/glsl-gradient-webflow@master/lib/gradient.02.js"></script>
+
+
+{% endblock %}

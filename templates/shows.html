@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="/static/css/shows.css">
+<div class="background-gif"></div>
+
+<h1>Videos</h1>
+<p style="text-align: center;color: white;">Experience the energy and passion of our shows, where every performance brings you closer to the heart of our music and the soul of the band.</p>
+
+<section>
+    <div class="video-container">
+        <h2>Kadambari 2023</h2>
+        <iframe class="youtube-iframe" src="https://www.youtube.com/embed/ZuTv0ERPNJM" title="YouTube video player" allowfullscreen></iframe>
+    </div>
+
+    <div class="video-container">
+        <h2>Kadambari 2024</h2>
+        <iframe class="youtube-iframe" src="https://www.youtube.com/embed/6a4Uzbi9BRg" title="YouTube video player" allowfullscreen></iframe>
+    </div>
+
+    <div class="video-container">
+        <h2>Sahana (Inaugurals 2023)</h2>
+        <iframe class="instagram-iframe" src="https://www.instagram.com/p/CxN3UnpR50k/embed" scrolling="no" allowfullscreen></iframe>
+    </div>
+
+    <div class="video-container">
+        <h2>Anthaathi (Intrams 2022)</h2>
+        <iframe class="instagram-iframe" src="https://www.instagram.com/p/CkphtqNg2q2/embed" scrolling="no" allowfullscreen></iframe>
+    </div>
+</section>
+
+<button class="scroll-left">←</button>
+<button class="scroll-right">→</button>
+
+
+<script>
+const carousel = document.querySelector("section");
+
+let scrollInterval = setInterval(() => {
+  carousel.scrollBy({
+    left: 300, // Scroll by the width of one video
+    behavior: "smooth",
+  });
+}, 3000); // Scroll every 3 seconds
+
+// Optional: Pause scrolling on mouse hover
+carousel.addEventListener("mouseover", () => {
+  clearInterval(scrollInterval);
+});
+
+carousel.addEventListener("mouseleave", () => {
+  scrollInterval = setInterval(() => {
+    carousel.scrollBy({
+      left: 300,
+      behavior: "smooth",
+    });
+  }, 3000);
+});
+
+const scrollLeftButton = document.querySelector('.scroll-left');
+const scrollRightButton = document.querySelector('.scroll-right');
+
+scrollLeftButton.addEventListener('click', () => {
+    carousel.scrollBy({
+        left: -300, // Scroll by 300px to the left
+        behavior: 'smooth'
+    });
+});
+
+scrollRightButton.addEventListener('click', () => {
+    carousel.scrollBy({
+        left: 300, // Scroll by 300px to the right
+        behavior: 'smooth'
+    });
+});
+
+</script>
+{% endblock %}

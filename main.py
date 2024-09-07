@@ -64,80 +64,10 @@ async def the_band(request: Request):
     # Fetch band member data
     return templates.TemplateResponse("the_band.html", {"request": request, "band":read_gsheet()})
 
-@app.get("/join_us", response_class=HTMLResponse)
+@app.get("/recruitment", response_class=HTMLResponse)
 async def join_us(request: Request):
     return templates.TemplateResponse("join_us.html", {"request": request})
 
-@app.post("/join_us_submit")
-async def join_us_submit(
-    request: Request,
-    name: str = Form(...),
-    roll_number: str = Form(...),
-    email: str = Form(...),
-    mobile_number: str = Form(...),
-    wing: str = Form(...),
-    category: str = Form(...),
-    audition_clip: UploadFile = File(None),
-    glimpse_of_work: UploadFile = File(None)
-):
-    # Handle file uploads
-    audition_clip_path = None
-    glimpse_of_work_path = None
-    upload_dir = "static/uploads"
-
-    os.makedirs(upload_dir, exist_ok=True)
-
-    if audition_clip:
-        audition_clip_path = os.path.join(upload_dir, audition_clip.filename)
-        with open(audition_clip_path, "wb") as buffer:
-            shutil.copyfileobj(audition_clip.file, buffer)
-
-    if glimpse_of_work:
-        glimpse_of_work_path = os.path.join(upload_dir, glimpse_of_work.filename)
-        with open(glimpse_of_work_path, "wb") as buffer:
-            shutil.copyfileobj(glimpse_of_work.file, buffer)
-
-    submission = Submission(
-        name=name,
-        roll_number=roll_number,
-        email=email,
-        mobile_number=mobile_number,
-        wing=wing,
-        category=category,
-        audition_clip=audition_clip_path,
-        glimpse_of_work=glimpse_of_work_path
-    )
-
-    await submissions_collection.insert_one(submission.dict())
-
-    return RedirectResponse(url="/thank_you", status_code=303)
-
-@app.get("/thank_you", response_class=HTMLResponse)
-async def thank_you(request: Request):
-    return templates.TemplateResponse("thank_you.html", {"request": request})
-
-# Admin Routes
-
-@app.get("/admin/login", response_class=HTMLResponse)
-async def admin_login(request: Request):
-    return templates.TemplateResponse("admin_login.html", {"request": request})
-
-@app.post("/admin/login")
-async def admin_login_post(credentials: HTTPBasicCredentials = Depends(security)):
-    user = get_current_user(credentials)
-    if user and user['role'] == 'admin':
-        # Implement session or token-based authentication
-        return RedirectResponse(url="/admin/dashboard", status_code=303)
-    raise HTTPException(status_code=400, detail="Invalid credentials")
-
-@app.get("/admin/dashboard", response_class=HTMLResponse)
-async def admin_dashboard(request: Request, user: dict = Depends(get_current_user)):
-    if user['role'] != 'admin':
-        raise HTTPException(status_code=403, detail="Forbidden")
-    submissions = []
-    async for submission in submissions_collection.find():
-        submissions.append(submission)
-    return templates.TemplateResponse("admin_dashboard.html", {"request": request, "submissions": submissions})
 
 if __name__ == "__main__":
     import uvicorn

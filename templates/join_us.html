@@ -1,52 +1,158 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Join Us</h2>
-<form action="/join_us_submit" method="post" enctype="multipart/form-data">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
+<div id="ytbg" data-youtube="https://www.youtube.com/watch?v=diW6jXhLE0E" style="z-index: -3;transform: scale(1.1);"></div>
+<section class="latest-videos">
+    <h2>Join Us</h2>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        #ytbg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: scale(10)!important;
+            z-index: -2; /* Ensure video is behind everything */
+        }
 
-    <label for="roll_number">Roll Number:</label>
-    <input type="text" id="roll_number" name="roll_number" required>
+@media(max-width: 768px) {
+        #ytbg {
+            transform: rotate(90deg) scale(10)!important;
+            overflow: hidden; /* Ensure no overflow */
+        }
+}
+    </style>
+    <table>
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Link</th>
+                <th>PoC</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Beatboxing</td>
+                <td><a href="https://tekmusic.intellx.in/?id=1" target="_blank">Apply Here</a></td>
+                <td>Shiva  (<a href="https://wa.me/919487333689" target="_blank">+91 94873 33689</a>)</td>
+            </tr>
+            <tr>
+                <td>Classical Vocals</td>
+                <td><a href="https://tekmusic.intellx.in/?id=2" target="_blank">Apply Here</a></td>
+                <td>Vishal (<a href="https://wa.me/916360530676" target="_blank">+91 6360 530 676</a>), Rethika (<a href="https://wa.me/919790196953" target="_blank">+91 97901 96953</a>)</td>
+            </tr>
+            <tr>
+                <td>Drums</td>
+                <td><a href="https://tekmusic.intellx.in/?id=3" target="_blank">Apply Here</a></td>
+                <td>Vijhay Valliyappan (<a href="https://wa.me/916379276849" target="_blank">+91 6379 276 849</a>)</td>
+            </tr>
+            <tr>
+                <td>Flute</td>
+                <td><a href="https://tekmusic.intellx.in/?id=4" target="_blank">Apply Here</a></td>
+                <td>Shiva  (<a href="https://wa.me/919487333689" target="_blank">+91 94873 33689</a>)</td>
+            </tr>
+            <tr>
+                <td>Guitar</td>
+                <td><a href="https://tekmusic.intellx.in/?id=5" target="_blank">Apply Here</a></td>
+                <td>Amruth (<a href="https://wa.me/919488200354" target="_blank">+91 94882 00354</a>), Odayappan (<a href="https://wa.me/917397047703" target="_blank">+91 73970 47703</a>)</td>
+            </tr>
+            <tr>
+                <td>Keys</td>
+                <td><a href="https://tekmusic.intellx.in/?id=6" target="_blank">Apply Here</a></td>
+                <td>Saran (<a href="https://wa.me/917010581741" target="_blank">+91 70105 81741</a>), Vijeyasri (<a href="https://wa.me/919994305501" target="_blank">+91 99943 05501</a>)</td>
+            </tr>
+            <tr>
+                <td>Light Vocals</td>
+                <td><a href="https://tekmusic.intellx.in/?id=7" target="_blank">Apply Here</a></td>
+                <td>Shiva  (<a href="https://wa.me/919487333689" target="_blank">+91 94873 33689</a>), Dharsha Durai (<a href="https://wa.me/919487319226" target="_blank">+91 94873 19226</a>)</td>
+            </tr>
+            <tr>
+                <td>Media</td>
+                <td><a href="https://tekmusic.intellx.in/?id=8" target="_blank">Apply Here</a></td>
+                <td>Maanasa Gayatri (Design) (<a href="https://wa.me/919176918295" target="_blank">+91 91769 18295</a>), Mukul Prakash (Photography) (<a href="https://wa.me/918618235136" target="_blank">+91 86182 35136</a>)</td>
+            </tr>
+            <tr>
+                <td>Rap</td>
+                <td><a href="https://tekmusic.intellx.in/?id=9" target="_blank">Apply Here</a></td>
+                <td>Shiva  (<a href="https://wa.me/919487333689" target="_blank">+91 94873 33689</a>)</td>
+            </tr>
+            <tr>
+                <td>Sound Mixing</td>
+                <td><a href="https://tekmusic.intellx.in/?id=10" target="_blank">Apply Here</a></td>
+                <td>Santhosh (<a href="https://wa.me/919566587117" target="_blank">+91 95665 87117</a>), Joses (<a href="https://wa.me/919360373399" target="_blank">+91 93603 73399</a>)</td>
+            </tr>
+            <tr>
+                <td>Sound Production</td>
+                <td><a href="https://tekmusic.intellx.in/?id=11" target="_blank">Apply Here</a></td>
+                <td>Aaditya Rengarajan (<a href="https://wa.me/911234" target="_blank">+91 1234</a>), Neelesh Padmanabh (<a href="https://wa.me/911234" target="_blank">+91 1234</a>)</td>
+            </tr>
+            <tr>
+                <td>Veena</td>
+                <td><a href="https://tekmusic.intellx.in/?id=12" target="_blank">Apply Here</a></td>
+                <td>Rethika (<a href="https://wa.me/919790196953" target="_blank">+91 97901 96953</a>)</td>
+            </tr>
+            <tr>
+                <td>Violin</td>
+                <td><a href="https://tekmusic.intellx.in/?id=13" target="_blank">Apply Here</a></td>
+                <td>Vishal (<a href="https://wa.me/916360530676" target="_blank">+91 6360 530 676</a>)</td>
+            </tr>
+            <tr>
+                <td>Western Vocals</td>
+                <td><a href="https://tekmusic.intellx.in/?id=14" target="_blank">Apply Here</a></td>
+                <td>Gaurav Vishnu (<a href="https://wa.me/919677396783" target="_blank">+91 96773 96783</a>), Kadeeja Farha (<a href="https://wa.me/917736472231" target="_blank">+91 1234</a>)</td>
+            </tr>
+            <tr>
+                <td>Other Instruments</td>
+                <td><a href="https://tekmusic.intellx.in/?id=15" target="_blank">Apply Here</a></td>
+                <td>Amruth (<a href="https://wa.me/919488200354" target="_blank">+91 94882 00354</a>), Saran (<a href="https://wa.me/917010581741" target="_blank">+91 70105 81741</a>)</td>
+            </tr>
+            <tr>
+                <td>Percussion</td>
+                <td><a href="https://tekmusic.intellx.in/?id=16" target="_blank">Apply Here</a></td>
+                <td>Amruth (<a href="https://wa.me/919488200354" target="_blank">+91 94882 00354</a>), Vijhay Valliyappan (<a href="https://wa.me/916379276849" target="_blank">+91 6379 276 849</a>)</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<script>
+    const ytbg = document.getElementById('ytbg');
+    const youtubeURL = ytbg.getAttribute('data-youtube');
+    
+    // Extract the video ID from the YouTube URL
+    const videoID = youtubeURL.split('v=')[1];
+    const ampersandPosition = videoID.indexOf('&');
+    if (ampersandPosition !== -1) {
+        videoID = videoID.substring(0, ampersandPosition); // Remove any additional parameters
+    }
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
+    // Create an iframe for the YouTube video using the embed URL
+    const embedURL = `https://www.youtube.com/embed/${videoID}?autoplay=1&mute=1&loop=1&playlist=${videoID}`;
+    
+    const iframe = document.createElement('iframe');
+    iframe.src = embedURL;
+    iframe.style.position = 'absolute';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.zIndex = '-2'; // Send it behind other elements
+    iframe.style.border = 'none';
+    iframe.allow = 'autoplay'; // Allow autoplay for the video
 
-    <label for="mobile_number">Mobile Number:</label>
-    <input type="tel" id="mobile_number" name="mobile_number" required>
+    // Append the iframe to the ytbg div
+    ytbg.appendChild(iframe);
+</script>
 
-    <label for="wing">Wing:</label>
-    <select id="wing" name="wing" required>
-        <option value="light_western">Light & Western</option>
-        <option value="classical">Classical</option>
-        <option value="design_photography">Design, Photography & Social Media</option>
-        <option value="live_mixing">Live Mixing</option>
-        <option value="music_production">Music Production</option>
-        <option value="other">Other</option>
-    </select>
-
-    <label for="category">Category:</label>
-    <select id="category" name="category" required>
-        <!-- Populate based on selected wing using JavaScript if needed -->
-        <option value="vocals">Vocals</option>
-        <option value="instruments">Instruments</option>
-        <option value="design">Design</option>
-        <option value="photography">Photography</option>
-        <option value="videography">Videography & Video Editing</option>
-        <option value="content_creation">Content Creation</option>
-        <option value="publicity">Publicity</option>
-        <option value="social_media">Social Media</option>
-        <option value="live_mixing">Live Mixing</option>
-        <option value="music_production">Music Production</option>
-        <option value="others">Others</option>
-    </select>
-
-    <label for="audition_clip">Audition Clip:</label>
-    <input type="file" id="audition_clip" name="audition_clip" accept="video/*">
-
-    <label for="glimpse_of_work">A Glimpse of Your Work:</label>
-    <input type="file" id="glimpse_of_work" name="glimpse_of_work" accept="image/*,video/*">
-
-    <button type="submit">Submit</button>
-</form>
 {% endblock %}
